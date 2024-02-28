@@ -29,16 +29,8 @@ jobs:
         run: |
           current_date=$(date '+%m/%d/%Y')
           branch_exists=$(git branch --list --remote | grep -F "origin/sync-template")
-          if [ -z "$branch_exists" ];
-          then
-            git checkout -b sync-template template/dev
-            git push origin sync-template
-          else
-            git checkout -b sync-template origin/sync-template
-            git merge template/dev
-            git commit -m "Merge changes from $current_date"
-            git push origin sync-template
-          fi
+          if [ -z "$branch_exists" ]; then
+            echo "HELLO"
         env:
           GITHUB_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
 
