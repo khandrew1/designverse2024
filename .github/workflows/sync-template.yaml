@@ -48,6 +48,11 @@ jobs:
         run: |
           current_date=$(date '+%m/%d/%Y')
           pr_number=$(gh pr list --base dev --state open --json title --json number --jq ".[] | select(.title == \"Sync Template Changes\") | .number")
-          echo $pr_number
+          if [ -z "$pr_number" ]
+          then
+            gh pr create --base dev --head sync-template --title "Sync Template Changes" --body "Syncing template changes from $current_date"
+          else
+            gh pr update $pr_number --base dev --head sync-template --title "Sync Template Changes" --body "Syncing template changes from $current_date"
+          fi
         env:
           GITHUB_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
