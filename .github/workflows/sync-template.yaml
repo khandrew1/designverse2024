@@ -31,6 +31,7 @@ jobs:
           branch_exists=$(git branch --list --remote | grep -F "origin/sync-template")
           if [ -z "$branch_exists" ]; then
             echo "HELLO"
+          fi;
         env:
           GITHUB_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
 
