@@ -29,9 +29,6 @@ jobs:
         run: |
           current_date=$(date '+%m/%d/%Y')
           branch_exists=$(git branch --list --remote | grep -F "origin/sync-template")
-          if [ -z "$branch_exists" ]; then
-            echo "HELLO"
-          fi;
         env:
           GITHUB_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
 
