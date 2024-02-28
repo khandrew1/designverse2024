@@ -47,7 +47,7 @@ jobs:
         working-directory: ${{ github.repository }}
         run: |
           current_date=$(date '+%m/%d/%Y')
-          pr_number=$(gh pr list --base dev --state open --json number --jq ".[] | select(.title == \"Sync Template Changes\") | .number")
+          pr_number=$(gh pr list --base dev --state open --json title --json number --jq ".[] | select(.title == \"Sync Template Changes\") | .number")
           echo $pr_number
         env:
           GITHUB_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
